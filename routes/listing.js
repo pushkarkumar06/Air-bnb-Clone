@@ -5,18 +5,23 @@ const wrapAsync = require("../utils/wrapAsync");
 const ExpressError = require("../utils/ExpressError.js");
 const { reviewSchema } = require("../schema.js");
 const { isLoggedIn } = require("../middleware.js");
-
 const listingController = require("../controllers/listings.js");
+const multer = require('multer');
+const {storage} = require("../cloudConfig.js");
+const upload = multer({storage});
 
 router
     .route("/")
     .get(wrapAsync(listingController.index))
-    .post(
-        isLoggedIn,
-        wrapAsync(listingController.createListing)
-    );
+    // .post(
+    //     isLoggedIn,
+    //     wrapAsync(listingController.createListing)
+    // );
+    .post( upload.single('image') , (req , res) => {
+        res.send(req.file);
+    });
 
-// new route 
+// New route 
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
 router
