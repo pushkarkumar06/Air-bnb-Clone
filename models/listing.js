@@ -18,8 +18,8 @@ const listingSchema = new Schema({      // listingSchema is a blueprint (schema)
             set: (v) => v === "" ? "https://imgs.search.brave.com/VPhfzux73mvlD8rc--U88wh5Jc9MNEdgvcCUkQ7tgDk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDExMjM5/NzgwLmpwZw" : v,
         }
     },
-    
-    
+
+
     price: Number,
     location: String,
     country: String,
@@ -30,8 +30,8 @@ const listingSchema = new Schema({      // listingSchema is a blueprint (schema)
         }
     ],
     owner: {
-       type: Schema.Types.ObjectId,
-       ref: "User", 
+        type: Schema.Types.ObjectId,
+        ref: "User",
     },
 });
 
