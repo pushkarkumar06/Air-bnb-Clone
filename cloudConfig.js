@@ -8,6 +8,7 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET
 });
 
+
 const Storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
@@ -15,6 +16,7 @@ const Storage = new CloudinaryStorage({
         allowerdFormats: ["png" , "jpg" , "jpeg"],
     },
 });
+
 
 module.exports = {
     cloudinary,

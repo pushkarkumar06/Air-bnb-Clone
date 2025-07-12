@@ -1,0 +1,22 @@
+<%- include("../includes/header") %>
+
+<h1>Reviews for <%= listing.title %></h1>
+
+<% if (listing.reviews.length === 0) { %>
+    <p>No reviews yet.</p>
+<% } else { %>
+    <ul>
+        <% listing.reviews.forEach(review => { %>
+            <li>
+                <strong><%= review.author.username %>:</strong>
+                <%= review.content %>
+            </li>
+        <% }) %>
+    </ul>
+<% } %>
+
+<a href="/listings/<%= listing._id %>">Back to listing</a>
+
+<%- include("../includes/footer") %>
+
+

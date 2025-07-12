@@ -22,20 +22,30 @@ module.exports.createListing = async (req, res, next) => {
                 url: req.file.path,
                 filename: req.file.filename
             };
+            console.log("✅ Image uploaded:");
+            console.log(" - URL:", req.file.path);
+            console.log(" - Filename:", req.file.filename);
+        } else {
+            // 🔥 This block was missing — add fallback!
+            listing.image = {
+                url: "/images/placeholder.jpg",
+                filename: "placeholder.jpg"
+            };
+            console.warn("⚠️ No image uploaded. Using placeholder image.");
         }
 
         console.log("🛠 Final Listing Object before saving:", listing);
-
         await listing.save();
-
         console.log("✅ Listing saved successfully!");
+
         req.flash("success", "New Listing Created!");
         res.redirect("/listings");
     } catch (err) {
         console.error("❌ Error while saving listing:", err);
-        next(err); // Pass to Express error handler middleware
+        next(err);
     }
 };
+
 
 module.exports.showListing = async (req, res) => {
     let { id } = req.params;
